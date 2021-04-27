@@ -57,6 +57,17 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 16,
         fontWeight: "bold"
+    },
+    iconsContainer:{
+        flexDirection: "row",
+        marginTop: 15 
+    },
+    icons:{
+        alignItems: "center",
+        marginHorizontal: 20
+    },
+    iconsText:{
+        color: "darkgray", marginTop: 5
     }
 })
 

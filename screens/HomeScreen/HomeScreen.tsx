@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Image, FlatList } from "react-native";
-import { Text, View } from "../../components/Themed";
+import { FlatList } from "react-native";
+import { View } from "../../components/Themed";
 
 import styles from "./styles";
 import categories from "../../assets/data/categories";
