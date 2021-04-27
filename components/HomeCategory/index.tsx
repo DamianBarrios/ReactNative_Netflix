@@ -8,7 +8,7 @@ interface HomeCategoryProps {
   category: {
     id: string;
     title: string;
-    movies: { id: string; poster: string };
+    movies: { id: string; poster: string }[];
   };
 }
 
