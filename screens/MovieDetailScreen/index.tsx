@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, Pressable, FlatList } from "react-native";
 import { MaterialIcons, AntDesign, Feather, Entypo } from "@expo/vector-icons";
 import { Text, View } from "../../components/Themed";
+import { Picker } from "@react-native-picker/picker";
+
 import EpisodeItem from "../../components/EpisodeItem";
 import styles from "./styles";
 import movie from "../../assets/data/movie";
 
 const firstSeason = movie.seasons.items[0];
-const firstEpisode = movie.seasons.items[0].episodes.items[0];
 
 const MovieDetailScreen = () => {
+  const [currentSeason, setCurrentSeason] = useState(firstSeason);
+
+  const seasonNames = movie.seasons.items.map((season) => season.name);
   return (
     <View>
-      <Image style={styles.image} source={{ uri: firstEpisode.poster }} />
+      <Image
+        style={styles.image}
+        source={{ uri: currentSeason.episodes.items[0].poster }}
+      />
 
       <FlatList
-        data={firstSeason.episodes.items}
+        data={currentSeason.episodes.items}
         renderItem={({ item }) => <EpisodeItem episode={item} />}
         style={{ marginBottom: 210 }}
         ListHeaderComponent={
@@ -71,6 +78,23 @@ const MovieDetailScreen = () => {
                 <Text style={styles.iconsText}>Share</Text>
               </View>
             </View>
+
+            <Picker
+              style={{ color: "white", width: 130 }}
+              dropdownIconColor={"white"}
+              selectedValue={currentSeason.name}
+              onValueChange={(itemValue, itemIndex) => {
+                setCurrentSeason(movie.seasons.items[itemIndex]);
+              }}
+            >
+              {seasonNames.map((seasonName) => (
+                <Picker.Item
+                  label={seasonName}
+                  value={seasonName}
+                  key={seasonName}
+                />
+              ))}
+            </Picker>
           </View>
         }
       />
